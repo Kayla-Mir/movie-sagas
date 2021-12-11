@@ -2,6 +2,20 @@
   text-align: center;
 }
 
+.posterDiv {
+  margin: auto;
+  width: 350px;
+  height: 450px;
+  max-height: 450px;
+  word-wrap: break-word;
+  font-size: medium;
+}
+
+.posterImage {
+  width: 250px;
+  max-height: 450px;
+  padding: 10px;
+} 
 
 .App-header {
   background-color: #222;
