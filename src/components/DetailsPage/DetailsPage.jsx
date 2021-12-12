@@ -5,6 +5,27 @@ import { useParams } from 'react-router-dom';
 
 function DetailsPage() {
     const history = useHistory();
+    const params = useParams();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        handleRefresh()
+    })
+
+    // using params to be able to refresh the page and
+    // not set everything on fire
+    const handleRefresh = () => {
+        if (details.length === 0) {
+            dispatch({
+                type: 'GET_DETAILS',
+                payload: params.id
+            }),
+                dispatch({
+                    type: 'GET_CATEGORIES',
+                    payload: params.id
+                })
+        }
+    }
 
     const details = useSelector(store => store.detailsReducer);
     const category = useSelector(store => store.categoryReducer);
@@ -13,15 +34,19 @@ function DetailsPage() {
 
     return (
         <div>
-            {details.length != 0 ? 
-            <>
-                <h3>{details[0].title}</h3>
-                <img className="posterImage" src={details[0].poster} alt={details[0].title} />
-                <p>{details[0].description}</p>
-                <button onClick={() => history.push('/')}>Back To List</button>
-            </>
-            :
-            <></>    
+            {details.length != 0 ?
+                <>
+                    <h3>{details[0].title}</h3>
+                    <img className="posterImage" src={details[0].poster} alt={details[0].title} />
+                    <h4>Genres</h4>
+                    {category.map((item, i) => {
+                        return <p key={i}>{item.name}</p>
+                    })}
+                    <p>{details[0].description}</p>
+                    <button onClick={() => history.push('/')}>Back To List</button>
+                </>
+                :
+                <></>
             }
         </div>
     )
