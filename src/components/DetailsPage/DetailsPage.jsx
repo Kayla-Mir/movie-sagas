@@ -10,32 +10,33 @@ function DetailsPage() {
     const params = useParams();
     const dispatch = useDispatch();
 
+    // calling the reducers that are holding one specific movie/category
+    const details = useSelector(store => store.detailsReducer);
+    const category = useSelector(store => store.categoryReducer);
+
     useEffect(() => {
         handleRefresh()
     })
 
     // using params to be able to refresh the page and
     // not set everything on fire
+        // sends two get requests for movie details and the categories
     const handleRefresh = () => {
         if (details.length === 0) {
             dispatch({
                 type: 'GET_DETAILS',
                 payload: params.id
             }),
-                dispatch({
-                    type: 'GET_CATEGORIES',
-                    payload: params.id
-                })
+            dispatch({
+                type: 'GET_CATEGORIES',
+                payload: params.id
+            })
         }
     }
 
-    const details = useSelector(store => store.detailsReducer);
-    const category = useSelector(store => store.categoryReducer);
-    console.log('category', category);
-    console.log('details', details);
-
     return (
         <div>
+            {/* null check for if details hasn't been populated with data yet */}
             {details.length != 0 ?
                 <>
                     <h3>{details[0].title}</h3>

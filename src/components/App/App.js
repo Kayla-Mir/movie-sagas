@@ -10,6 +10,7 @@ function App() {
       <Router>
         <header>
           <h1>The Movies Saga!</h1>
+          {/* links to the specific components */}
           <Link to="/" style={{ textDecoration: 'none', paddingRight: 12 }}>Home</Link>|
           <Link to="/addMovie" style={{ textDecoration: 'none', paddingLeft: 12 }}>Add Movie</Link>
         </header>

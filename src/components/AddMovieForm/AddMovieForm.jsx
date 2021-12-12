@@ -15,6 +15,7 @@ function AddMovieForm() {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    // on page load populating the genres reducer for use in the dropdown
     useEffect(() => {
         getCategories()
     }, []);
@@ -30,6 +31,9 @@ function AddMovieForm() {
     const [movieDescription, setMovieDescription] = useState('');
     const [movieGenre, setMovieGenre] = useState('');
 
+    // assigns the pieces of state from above to a newMovie object to send to the DB
+        // checks if any of the values are empty, sends an alert if yes
+        // pushes back to movie list page
     const handleSave = () => {
         const newMovie = {
             title: movieTitle,
@@ -57,7 +61,10 @@ function AddMovieForm() {
             history.push('/');
         }
     }
+    
+    // see line 145 below about img 404
 
+    // using MUI styling, look up if confused
     return (
         <>
             <div className="addMovieDiv">

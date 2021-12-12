@@ -20,7 +20,7 @@ function* rootSaga() {
     yield takeEvery('ADD_MOVIE', addNewMovie);
 }
 
-// stores specific movie for details page
+// stores a specific movie for details page
 const detailsReducer = (state = [], action) => {
     switch (action.type) {
         case 'STORE_DETAILS':
@@ -30,7 +30,7 @@ const detailsReducer = (state = [], action) => {
     }
 }
 
-// stores specific genres for details page
+// stores a specific genres for details page
 const categoryReducer = (state = [], action) => {
     switch (action.type) {
         case 'STORE_CATEGORY':
