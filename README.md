@@ -50,13 +50,14 @@ ___
 ## Usage
 ___
 
-1. Click the start button.
-2. Rate your feeling about your day, your understanding, your level of support, and add any comments you have. Click the back or next buttons.
-3. If you go back you can edit your response, but don't worry at the review page you can edit them all at once!
-4. Once you've reviewed your feedback hit the submit button, and you're done!
-5. Check out the Admin page by typing /admin in the url.
-6. Here you can see all the feedback stored in the database. You can choose to flag it for review, or review the feedback.
-7. You can also delete feedback if you need to, just hit the delete button and you'll be prompted to confirm it. (Don't want to accidentally delete it!)
+1. Click on a movie or add a new movie.
+2. Clicking on a movie will bring you to the details page of that movie.
+    - The details page of the movie displays the title, the genres associated with it, the poster, and the description. At the end of the page there is a button to bring you back to the main list.
+3. Clicking the add movie link at the top of the page will bring you to the add movie component.
+4. Here you can add new movies to the database.
+5. Type in all the relevant details for your movie, choose a poster url and a category from the drop down.
+6. Before you hit submit, scrolling down will bring to you to preview of your movie.
+7. Once you're happy with your new movie, you can hit submit. Or you can hit cancel to bring you back to the main list of movies.
 
 ## Built With
 ___
