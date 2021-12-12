@@ -102,7 +102,6 @@ Research [React Router URL PARAMS](https://reactrouter.com/web/example/url-param
 Add to the detail page an edit button that brings the user to the edit page.
 
 This new page should show:
-
 - an input field (for changing the movie title), for the selected movie.
 - a textarea (for changing the movie description)
 
@@ -118,7 +117,7 @@ The edit page should have the buttons:
 - [ ] Allow the user to select many genres as they add
     - You'll have to change the INSERT statement
 - [ ] Move sagas and reducers out of your `index.js` and into separate files (ideally in `src/redux/reducers` and `src/redux/sagas` folders).
-- [ ] Allow the user to refresh the details or edit page. The url for the details page would be something like `/details/1` for movie with id of `1`. Research [react router params](https://reacttraining.com/react-router/web/example/url-params).
+- [x] Allow the user to refresh the details or edit page. The url for the details page would be something like `/details/1` for movie with id of `1`. Research [react router params](https://reacttraining.com/react-router/web/example/url-params).
 - [ ] Allow the user to add a genre to a movie.
 - [ ] Allow the user to remove a genre from a movie.
 - [ ] Only display the top 10 movies, and allow the user to search for movie titles with a search bar on the home page (you can do this on the client side or the server side, server side is a bigger stretch, but good practice).
