@@ -30,7 +30,6 @@ function AddMovieForm() {
     const [movieUrl, setMovieUrl] = useState('');
     const [movieDescription, setMovieDescription] = useState('');
     const [movieGenre, setMovieGenre] = useState('');
-    console.log('genre', movieGenre)
 
     const handleSave = () => {
         const newMovie = {
@@ -88,7 +87,6 @@ function AddMovieForm() {
                         onChange={(event) => setMovieUrl(event.target.value)}
                         label="Movie Poster URL"
                     />
-
                 </Box>
                 <div>
                     <TextField
@@ -135,8 +133,10 @@ function AddMovieForm() {
             <div>
                 <h2>Preview</h2>
                 <h3>{movieTitle}</h3>
-                <p className="genres">Genre: {genres.filter(genre => genre.id == movieGenre)[0].name}</p>
-                <img className="posterImage" src={movieUrl} alt={movieTitle} />
+                <p className="genres">Genre: {genres.filter(genre => genre.id == movieGenre)[0]?.name}</p>
+                {/*this img element will 404 while typing a link until the link is complete
+                shouldn't affect anything */}
+                <img className="posterImage" src={movieUrl} alt={movieTitle} /> 
                 <p className="descriptionBox">{movieDescription}</p>
             </div>
         </>
