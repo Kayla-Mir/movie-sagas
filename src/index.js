@@ -20,6 +20,7 @@ function* rootSaga() {
     yield takeEvery('ADD_MOVIE', addNewMovie);
 }
 
+// stores specific movie for details page
 const detailsReducer = (state = [], action) => {
     switch (action.type) {
         case 'STORE_DETAILS':
@@ -29,7 +30,8 @@ const detailsReducer = (state = [], action) => {
     }
 }
 
-const categoryReducer = (state=[], action) => {
+// stores specific genres for details page
+const categoryReducer = (state = [], action) => {
     switch (action.type) {
         case 'STORE_CATEGORY':
             return action.payload;
@@ -37,82 +39,6 @@ const categoryReducer = (state=[], action) => {
             return state;
     }
 }
-
-function* fetchMovieDetails(action) {
-    console.log('fetch movies', action.payload);
-    const movieId = action.payload;
-    try {
-        const response = yield axios({
-            method: 'GET',
-            url: `/api/movie/${movieId}`
-        })
-        yield put({
-            type: 'STORE_DETAILS',
-            payload: response.data
-        })
-
-    } catch (err) {
-        console.error('GET movies by movie id', err);
-    }
-}
-
-function* fetchMovieCategories(action) {
-    const movieId = action.payload;
-    try {
-        const response = yield axios({
-            method: 'GET',
-            url: `/api/genre/${movieId}`
-        })
-        yield put({
-            type: 'STORE_CATEGORY',
-            payload: response.data
-        })
-    } catch (err) {
-        console.error('GET categories by movie id', err);
-    }
-}
-
-function* fetchAllMovies() {
-    // get all movies from the DB
-    try {
-        const movies = yield axios.get('/api/movie');
-        console.log('get all:', movies.data);
-        yield put({ type: 'SET_MOVIES', payload: movies.data });
-
-    } catch {
-        console.log('get all error');
-    }     
-}
-
-function* fetchAllCategories() {
-    // get all movies from the DB
-    try {
-        const movies = yield axios.get('/api/genre');
-        console.log('get all:', movies.data);
-        yield put({ type: 'SET_GENRES', payload: movies.data });
-
-    } catch {
-        console.log('get all error');
-    }     
-}
-
-function* addNewMovie(action) {
-    try {
-        const response = yield axios({
-            method: 'POST',
-            url: '/api/movie',
-            data: action.payload
-        })
-        yield put({
-            type: 'FETCH_MOVIES'
-        })
-    } catch {
-        console.log('addNewMovie error');
-    }
-}
-
-// Create sagaMiddleware
-const sagaMiddleware = createSagaMiddleware();
 
 // Used to store movies returned from the server
 const movies = (state = [], action) => {
@@ -134,6 +60,88 @@ const genres = (state = [], action) => {
     }
 }
 
+// get specific movie by id
+    // stores in the detailsReducer
+function* fetchMovieDetails(action) {
+    console.log('fetch movies', action.payload);
+    const movieId = action.payload;
+    try {
+        const response = yield axios({
+            method: 'GET',
+            url: `/api/movie/${movieId}`
+        })
+        yield put({
+            type: 'STORE_DETAILS',
+            payload: response.data
+        })
+
+    } catch (err) {
+        console.error('GET movies by movie id', err);
+    }
+}
+
+// get specific movie genres by id from db
+    // stores in the categoryReducer
+function* fetchMovieCategories(action) {
+    const movieId = action.payload;
+    try {
+        const response = yield axios({
+            method: 'GET',
+            url: `/api/genre/${movieId}`
+        })
+        yield put({
+            type: 'STORE_CATEGORY',
+            payload: response.data
+        })
+    } catch (err) {
+        console.error('GET categories by movie id', err);
+    }
+}
+
+// get all movies from the DB
+    // stores in movies reducer
+function* fetchAllMovies() {
+    try {
+        const movies = yield axios.get('/api/movie');
+        console.log('get all:', movies.data);
+        yield put({ type: 'SET_MOVIES', payload: movies.data });
+    } catch {
+        console.log('get all error');
+    }
+}
+
+// get all categories from the DB
+    // stores in genres reducer
+function* fetchAllCategories() {
+    try {
+        const movies = yield axios.get('/api/genre');
+        console.log('get all:', movies.data);
+        yield put({ type: 'SET_GENRES', payload: movies.data });
+    } catch {
+        console.log('get all error');
+    }
+}
+
+// sends a POST request with new movie data
+    // calls the fetchAllMovies function
+function* addNewMovie(action) {
+    try {
+        const response = yield axios({
+            method: 'POST',
+            url: '/api/movie',
+            data: action.payload
+        })
+        yield put({
+            type: 'FETCH_MOVIES'
+        })
+    } catch {
+        console.log('addNewMovie error');
+    }
+}
+
+// Create sagaMiddleware
+const sagaMiddleware = createSagaMiddleware();
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
@@ -152,7 +160,7 @@ sagaMiddleware.run(rootSaga);
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={storeInstance}>
-        <App />
+            <App />
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')

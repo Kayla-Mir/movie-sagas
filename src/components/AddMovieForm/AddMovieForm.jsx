@@ -9,7 +9,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
 
 function AddMovieForm() {
     const genres = useSelector(store => store.genres);
@@ -133,7 +132,9 @@ function AddMovieForm() {
             <div>
                 <h2>Preview</h2>
                 <h3>{movieTitle}</h3>
-                <p className="genres">Genre: {genres.filter(genre => genre.id == movieGenre)[0]?.name}</p>
+                <p className="genres">
+                    Genre: {genres.filter(genre => genre.id == movieGenre)[0]?.name}
+                </p>
                 {/*this img element will 404 while typing a link until the link is complete
                 shouldn't affect anything */}
                 <img className="posterImage" src={movieUrl} alt={movieTitle} /> 

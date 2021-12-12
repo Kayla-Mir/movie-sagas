@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+// generic GET request for all movies
+  // sends back all the movies
+  // or sends an error
 router.get('/', (req, res) => {
-
   const query = `SELECT * FROM movies ORDER BY "title" ASC`;
   pool.query(query)
     .then(result => {
@@ -11,10 +13,13 @@ router.get('/', (req, res) => {
     })
     .catch(err => {
       console.log('ERROR: Get all movies', err);
-      res.sendStatus(500)
+      res.sendStatus(500);
     })
 });
 
+// specific GET request for a singular movie
+  // sends back whole movie object
+  // or sends an error
 router.get('/:id', (req, res) => {
   const sqlText = `
     SELECT * FROM "movies"
@@ -56,13 +61,12 @@ router.post('/', (req, res) => {
       }).catch(err => {
         // catch for second query
         console.log(err);
-        res.sendStatus(500)
+        res.sendStatus(500);
       })
-
       // Catch for first query
     }).catch(err => {
       console.log(err);
-      res.sendStatus(500)
+      res.sendStatus(500);
     })
 })
 

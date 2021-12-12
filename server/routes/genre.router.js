@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+// generic GET route for all genres
+  // sends all from genres
+  // or sends an error
 router.get('/', (req, res) => {
   const sqlText = `
     SELECT * FROM "genres"
@@ -15,6 +18,9 @@ router.get('/', (req, res) => {
     })
 })
 
+// specific GET route for genre based on movie id
+  // sends single genre name
+  // or sends an error
 router.get('/:id', (req, res) => {
   const sqlText = `
     SELECT "name" FROM "genres"
