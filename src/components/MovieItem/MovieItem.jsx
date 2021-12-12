@@ -12,17 +12,17 @@ function MovieItem({ movie }) {
             type: 'GET_DETAILS',
             payload: movie.id
         }),
-        dispatch({
-            type: 'GET_CATEGORIES',
-            payload: movie.id
-        }),
-        history.push(`/details/${movie.id}`);
+            dispatch({
+                type: 'GET_CATEGORIES',
+                payload: movie.id
+            }),
+            history.push(`/details/${movie.id}`);
     }
 
     return (
         <div className="posterDiv">
             <div onClick={goToDetails}>
-                <h3>{movie.title}</h3>
+                <h3 className="movieTitle">{movie.title}</h3>
                 <img className="posterImage" src={movie.poster} alt={movie.title} />
             </div>
         </div>
