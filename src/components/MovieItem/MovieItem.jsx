@@ -7,16 +7,18 @@ function MovieItem({ movie }) {
     const history = useHistory();
     const dispatch = useDispatch();
 
+    // clicking a movie div will send two dispatches specific movie data
+        // pushes to details page for that movie with params
     const goToDetails = () => {
         dispatch({
             type: 'GET_DETAILS',
             payload: movie.id
         }),
-            dispatch({
-                type: 'GET_CATEGORIES',
-                payload: movie.id
-            }),
-            history.push(`/details/${movie.id}`);
+        dispatch({
+            type: 'GET_CATEGORIES',
+            payload: movie.id
+        }),
+        history.push(`/details/${movie.id}`);
     }
 
     return (

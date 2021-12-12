@@ -137,6 +137,7 @@ function AddMovieForm() {
 
             </div>
             <div>
+                {/* preview of your movie, populated with pieces of state */}
                 <h2>Preview</h2>
                 <h3>{movieTitle}</h3>
                 <p className="genres">
