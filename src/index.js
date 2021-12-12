@@ -63,7 +63,6 @@ const genres = (state = [], action) => {
 // get specific movie by id
     // stores in the detailsReducer
 function* fetchMovieDetails(action) {
-    console.log('fetch movies', action.payload);
     const movieId = action.payload;
     try {
         const response = yield axios({
@@ -103,7 +102,6 @@ function* fetchMovieCategories(action) {
 function* fetchAllMovies() {
     try {
         const movies = yield axios.get('/api/movie');
-        console.log('get all:', movies.data);
         yield put({ type: 'SET_MOVIES', payload: movies.data });
     } catch {
         console.log('get all error');
@@ -115,7 +113,6 @@ function* fetchAllMovies() {
 function* fetchAllCategories() {
     try {
         const movies = yield axios.get('/api/genre');
-        console.log('get all:', movies.data);
         yield put({ type: 'SET_GENRES', payload: movies.data });
     } catch {
         console.log('get all error');

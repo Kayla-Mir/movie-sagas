@@ -136,7 +136,7 @@ function AddMovieForm() {
                 </Button>
 
             </div>
-            <div>
+            <div id="previewDiv">
                 {/* preview of your movie, populated with pieces of state */}
                 <h2>Preview</h2>
                 <h3>{movieTitle}</h3>
