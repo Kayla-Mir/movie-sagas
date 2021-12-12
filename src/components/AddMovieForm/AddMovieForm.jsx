@@ -2,6 +2,14 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import swal from 'sweetalert';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 function AddMovieForm() {
     const genres = useSelector(store => store.genres);
@@ -22,6 +30,7 @@ function AddMovieForm() {
     const [movieUrl, setMovieUrl] = useState('');
     const [movieDescription, setMovieDescription] = useState('');
     const [movieGenre, setMovieGenre] = useState('');
+    console.log('genre', movieGenre)
 
     const handleSave = () => {
         const newMovie = {
@@ -52,47 +61,85 @@ function AddMovieForm() {
     }
 
     return (
-        <div>
-            <h2>Add A Movie</h2>
-            <input
-                id="titleInput"
-                type="text"
-                value={movieTitle}
-                onChange={(event) => setMovieTitle(event.target.value)}
-                placeholder="Movie Title"
-            />
-            <input
-                id="urlInput"
-                type="text"
-                value={movieUrl}
-                onChange={(event) => setMovieUrl(event.target.value)}
-                placeholder="Movie Poster URL"
-            />
-            <textarea
-                value={movieDescription}
-                onChange={(event) => setMovieDescription(event.target.value)}
-                placeholder="Description"
-                cols="30"
-                rows="6"
-            />
-            <select
-                id="dropdown"
-                value={movieGenre}
-                onChange={(event) => setMovieGenre(event.target.value)}>
-                <option value="" defaultValue disabled >
-                    Pick a Category!
-                </option>
-                {genres.map((item) => {
-                    return (
-                        <option key={item.id} value={item.id}>
-                            {item.name}
-                        </option>
-                    );
-                })}
-            </select>
-            <button id="saveButton" onClick={handleSave}>Save Movie</button>
-            <button id="cancelButton" onClick={() => history.push('/')}>Cancel</button>
-        </div>
+        <>
+            <div className="addMovieDiv">
+                <h2>Add A Movie</h2>
+                <Box
+                    component="form"
+                    sx={{
+                        '& > :not(style)': { m: 1, width: '25ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                >
+                    <TextField
+                        variant="standard"
+                        id="titleInput"
+                        type="text"
+                        value={movieTitle}
+                        onChange={(event) => setMovieTitle(event.target.value)}
+                        label="Movie Title"
+                    />
+                    <TextField
+                        variant="standard"
+                        id="urlInput"
+                        type="text"
+                        value={movieUrl}
+                        onChange={(event) => setMovieUrl(event.target.value)}
+                        label="Movie Poster URL"
+                    />
+
+                </Box>
+                <div>
+                    <TextField
+                        id="textField"
+                        label="Description"
+                        multiline
+                        rows={4}
+                        value={movieDescription}
+                        onChange={(event) => setMovieDescription(event.target.value)}
+                    />
+                </div>
+                <FormControl sx={{ m: 1, minWidth: 120 }}>
+                    <InputLabel id="dropdown">Category</InputLabel>
+                    <Select
+                        labelId="dropdown"
+                        id="dropdown"
+                        value={movieGenre}
+                        label="Category"
+                        onChange={(event) => setMovieGenre(event.target.value)}
+                    >
+                        {genres.map((item) => {
+                            return (
+                                <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>
+                            );
+                        })}
+                    </Select>
+                </FormControl>
+                <Button
+                    id="saveButton"
+                    onClick={handleSave}
+                    variant="contained"
+                >
+                    Save Movie
+                </Button>
+                <Button
+                    id="cancelButton"
+                    onClick={() => history.push('/')}
+                    variant="contained"
+                >
+                    Cancel
+                </Button>
+
+            </div>
+            <div>
+                <h2>Preview</h2>
+                <h3>{movieTitle}</h3>
+                <p className="genres">Genre: {genres.filter(genre => genre.id == movieGenre)[0].name}</p>
+                <img className="posterImage" src={movieUrl} alt={movieTitle} />
+                <p className="descriptionBox">{movieDescription}</p>
+            </div>
+        </>
     )
 }
 

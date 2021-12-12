@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router";
 import { useParams } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 function DetailsPage() {
     const history = useHistory();
@@ -43,7 +45,13 @@ function DetailsPage() {
                         return <p className="genres" key={i}>{item.name}</p>
                     })}
                     <p className="descriptionBox">{details[0].description}</p>
-                    <button onClick={() => history.push('/')}>Back To List</button>
+                    <Button
+                        id="backHomeButton"
+                        onClick={() => history.push('/')} 
+                        variant="contained"
+                    >
+                        Back To List
+                    </Button>
                 </>
                 :
                 <></>

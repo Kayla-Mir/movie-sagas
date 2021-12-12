@@ -63,29 +63,35 @@ a:hover {
   margin: 15px 20vw 15px 20vw;
 }
 
+#backHomeButton {
+  margin-bottom: 20px;
+}
+
+.addMovieDiv {
+  margin-left: auto;
+  margin-right: auto;
+  width: 65vw;
+  margin-top: 15px;
+  border-radius: 5px;
+  padding-top: 2px;
+  background-color: rgb(253, 253, 253);
+  box-shadow: 10px 8px 5px rgb(100, 100, 100);
+}
+
 #titleInput {
   display: inline-block;
-  margin-right: 10px;
-  width: 200px;
+  margin-right: 0px;
 }
 
 #urlInput {
   display: inline-block;
-  margin-left: 10px;
-  width: 200px;
 }
 
-textarea {
-  border-radius: 5px;
-  display: block;
+#textField {
+  margin: 15px;
   width: 40vw;
-  margin: 15px auto 15px auto;
 }
 
-#dropdown {
-  width: 135px;
-  height: 25px;
-  text-align: center;
-  display: inline-block;
-  margin: 2px 15px 15px 15px;
+#saveButton {
+  margin: 15px;
 }
